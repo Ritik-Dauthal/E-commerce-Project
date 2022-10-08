@@ -11,7 +11,7 @@ function callSignupApi(values, bag) {
     .post("https://myeasykart.codeyogi.io/signup", {
       email: values.email,
       password: values.password,
-      full_name: values.full_name,
+      fullName: values.fullName,
     })
     .then((response) => {
       const { user, token } = response.data;
@@ -87,9 +87,9 @@ export function Signup({
           <div className="flex mt-4 mb-4 space-x-4">
             <div className="flex flex-col">
               <FancyInput
-                values={values.full_name}
-                errors={errors.full_name}
-                touched={touched.full_name}
+                values={values.fullName}
+                errors={errors.fullName}
+                touched={touched.fullName}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 name="full_name"
