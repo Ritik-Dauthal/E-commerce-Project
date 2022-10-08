@@ -92,11 +92,11 @@ export function Signup({
                 touched={touched.fullName}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                name="full_name"
+                name="fullName"
                 type="text"
-                id="full_name"
+                id="fullName"
                 required
-                autoComplete="full_name"
+                autoComplete="fullName"
                 placeholder="full_name"
               />
             </div>
