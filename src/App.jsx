@@ -101,10 +101,7 @@ function App() {
               </Authroute>
             }
           ></Route>
-          <Route
-            path="/signup"
-            element={<Signup user={user} setuser={setuser} />}
-          ></Route>
+          <Route path="/signup" element={<Signup setuser={setuser} />}></Route>
           <Route path="/forget" element={<Forget />}></Route>
           <Route
             path="/cart"
