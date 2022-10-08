@@ -26,13 +26,13 @@ function callSignupApi(values, bag) {
 const SignupSchema = Yup.object().shape({
   email: Yup.string().email().required(),
   password: Yup.string().min(8).required(),
-  full_name: Yup.string().required(),
+  fullName: Yup.string().required(),
 });
 
 const initialvalues = {
   email: "",
   password: "",
-  full_name: "",
+  fullName: "",
 };
 export function Signup({
   handleSubmit,
