@@ -64,11 +64,11 @@ function ProductListPage({ user, setuser }) {
 
   return (
     <div className="p-2 max-w-6xl mx-auto bg-white px-9 py-[50px}">
-      <div className="font-bold text-center text-primary-dark animate-bounce">
+      <div className="text-4xl font-bold text-center md:text-3xl text-primary-dark animate-bounce">
         Welcome, {user.full_name}
       </div>
       <div className="flex">
-        <div className="flex flex-col mb-2 lg:flex-row ">
+        <div className="flex flex-col mb-2 lg:flex-row">
           <FancyInput
             placeholder="search"
             onChange={handlechange}
@@ -76,7 +76,7 @@ function ProductListPage({ user, setuser }) {
           />
 
           <select
-            className="w-40 border border-gray-700 rounded-md"
+            className="w-40 border border-gray-700 rounded-md "
             onChange={sortchange}
             value={sort}
           >
@@ -90,7 +90,7 @@ function ProductListPage({ user, setuser }) {
         <div>
           <button
             onClick={handleLogOut}
-            className="px-2 font-semibold text-white bg-primary-dark"
+            className="px-2 text-4xl font-semibold text-white md:text-xl bg-primary-dark"
           >
             LogOut
           </button>
