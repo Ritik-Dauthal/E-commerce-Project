@@ -4,7 +4,7 @@ import Noproduct from "./Noproduct";
 import { getProductList } from "./api";
 import Loading from "./Loading";
 import FancyInput from "./FancyInput";
-import { Navigate } from "react-router-dom";
+import { WithUser } from "./WithProvider";
 
 function ProductListPage({ user, setuser }) {
   const [productlist, setProductlist] = useState([]);
@@ -103,4 +103,4 @@ function ProductListPage({ user, setuser }) {
   );
 }
 
-export default ProductListPage;
+export default WithUser(ProductListPage);

@@ -1,5 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
+import { WithUser } from "./WithProvider";
 
 const Authroute = ({ user, children }) => {
   if (user) {
@@ -7,4 +8,4 @@ const Authroute = ({ user, children }) => {
   }
   return children;
 };
-export default Authroute;
+export default WithUser(Authroute);

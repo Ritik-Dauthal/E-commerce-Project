@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import FancyInput from "./FancyInput";
 import Input from "./Input";
 import axios from "axios";
+import { WithUser, AlertUser } from "./WithProvider";
 
 function callLoginApi(values, bag) {
   axios
@@ -18,7 +19,7 @@ function callLoginApi(values, bag) {
       bag.props.setuser(user);
     })
     .catch(() => {
-      console.log("invalid");
+      bag.props.SetAlert({ type: "failed", message: "Invalid Data" });
     });
 }
 
@@ -105,4 +106,4 @@ const myHoc = withFormik({
 
 const EasyLogin = myHoc(Login);
 
-export default EasyLogin;
+export default AlertUser(WithUser(EasyLogin));

@@ -1,10 +1,11 @@
 import { withFormik } from "formik";
 import React from "react";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Input from "./Input";
 import FancyInput from "./FancyInput";
 import axios from "axios";
+import WithUser from "./WithProvider";
 
 function callSignupApi(values, bag) {
   axios
@@ -126,4 +127,4 @@ const myHoc = withFormik({
 });
 const EAsySignIn = myHoc(Signup);
 
-export default EAsySignIn;
+export default WithUser(EAsySignIn);
