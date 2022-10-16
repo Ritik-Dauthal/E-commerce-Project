@@ -6,15 +6,15 @@ import { getProductData } from "./api";
 import Loading from "./Loading";
 import NoProductFound from "./NoProductFound";
 import { AiFillHome } from "react-icons/ai";
+import { WithCart } from "./WithProvider";
 
-function ProductDetail({ onAddToCart }) {
+function ProductDetail({ handleAddToCart }) {
   const params = useParams();
   const id = +params.xyz;
   const [Product, Setproduct] = useState();
   const [loading, Setloading] = useState(true);
   const [count, setCount] = useState(1);
 
-  console.log("ProductDetail is running");
   useEffect(
     function () {
       const d = getProductData(id);
@@ -32,7 +32,7 @@ function ProductDetail({ onAddToCart }) {
     setCount(+event.target.value);
   }
   function handleButtonClick() {
-    onAddToCart(id, count);
+    handleAddToCart(id, count);
   }
 
   if (loading) {
@@ -42,7 +42,8 @@ function ProductDetail({ onAddToCart }) {
     return <NoProductFound />;
   }
   function handleitemchange() {
-    return setCount(1);
+    setCount(1);
+    Setloading(true);
   }
 
   return (
@@ -119,4 +120,4 @@ function ProductDetail({ onAddToCart }) {
     </>
   );
 }
-export default memo(ProductDetail);
+export default WithCart(memo(ProductDetail));

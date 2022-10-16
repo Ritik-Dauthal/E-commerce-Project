@@ -1,6 +1,6 @@
 import React from "react";
-import { Children } from "react";
 import { Navigate } from "react-router-dom";
+import { WithUser } from "./WithProvider";
 
 const UserRoute = ({ user, children }) => {
   if (!user) {
@@ -8,4 +8,4 @@ const UserRoute = ({ user, children }) => {
   }
   return children;
 };
-export default UserRoute;
+export default WithUser(UserRoute);
