@@ -27,6 +27,10 @@ function ProductDetail({ handleAddToCart }) {
     },
     [id]
   );
+  function handleitemchange() {
+    setCount(1);
+    Setloading(true);
+  }
 
   function handleCountChange(event) {
     setCount(+event.target.value);
@@ -40,10 +44,6 @@ function ProductDetail({ handleAddToCart }) {
   }
   if (!Product) {
     return <NoProductFound />;
-  }
-  function handleitemchange() {
-    setCount(1);
-    Setloading(true);
   }
 
   return (
