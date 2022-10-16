@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { AlertContext, userContext } from "./Context";
+import { AlertContext, CartContext, userContext } from "./Context";
 
 const WithProvider = (IncomingProvider) => (Incoming) => (props) => {
   const ContextData = useContext(IncomingProvider);
@@ -10,3 +10,4 @@ export default WithProvider;
 
 export const AlertUser = WithProvider(AlertContext);
 export const WithUser = WithProvider(userContext);
+export const WithCart = WithProvider(CartContext);

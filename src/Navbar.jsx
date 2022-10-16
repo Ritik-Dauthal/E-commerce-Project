@@ -3,9 +3,9 @@ import { BsCartCheck } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import Hamburger from "./HamburgerIcon";
 import { VscAccount } from "react-icons/vsc";
-import { WithUser } from "./WithProvider";
+import { WithCart, WithUser } from "./WithProvider";
 
-function Navbar({ productCount, HamburgerOpen, menuopen, user }) {
+function Navbar({ totalCount, HamburgerOpen, menuopen, user }) {
   return (
     <div className="py-4 bg-gray-100 ">
       <div className="flex justify-between max-w-6xl mx-auto">
@@ -28,7 +28,7 @@ function Navbar({ productCount, HamburgerOpen, menuopen, user }) {
                   <BsCartCheck className="text-4xl md:text-3xl" />
                 </Link>
                 <div className="text-center text-white border rounded-full -mt-11 border-md bg-primary-dark">
-                  {productCount}
+                  {totalCount}
                 </div>
               </div>
             )}
@@ -38,4 +38,4 @@ function Navbar({ productCount, HamburgerOpen, menuopen, user }) {
     </div>
   );
 }
-export default WithUser(memo(Navbar));
+export default WithUser(WithCart(memo(Navbar)));

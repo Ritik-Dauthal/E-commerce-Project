@@ -5,59 +5,61 @@ import { getProductList } from "./api";
 import Loading from "./Loading";
 import FancyInput from "./FancyInput";
 import { WithUser } from "./WithProvider";
+import { range } from "lodash";
+import { Link, useSearchParams } from "react-router-dom";
 
 function ProductListPage({ user, setuser }) {
-  const [productlist, setProductlist] = useState([]);
+  const [productlist, setProductlist] = useState({});
   const [loading, setloading] = useState(true);
 
-  useEffect(function () {
-    const p = getProductList();
-    p.then(function (products) {
-      setProductlist(products);
-      setloading(false);
-    });
-  }, []);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const params = Object.fromEntries([...searchParams]);
+
+  let { sort, query, page } = params;
+
+  sort = sort || "default";
+  query = query || "";
+  page = +page || 1;
+
+  useEffect(
+    function () {
+      let sortBy;
+      let sortType;
+
+      if (sort == "title") {
+        sortBy = "title";
+      } else if (sort == "pricei") {
+        sortBy = "price";
+      } else if (sort == "priced") {
+        sortBy = "price";
+        sortType = "desc";
+      }
+
+      getProductList(sortBy, query, page, sortType).then(function (response) {
+        setProductlist(response);
+        setloading(false);
+      });
+    },
+    [sort, query, page]
+  );
   const handleLogOut = () => {
     localStorage.removeItem("token");
     setuser(undefined);
   };
 
-  const [query, setQuery] = useState("");
-  const [sort, setsort] = useState("default");
-
-  const data = productlist.filter(function (item) {
-    return item.title.toLowerCase().indexOf(query.toLowerCase()) != -1;
-  });
-
-  if (sort == "title") {
-    data.sort(function (x, y) {
-      return x.title > y.title ? -1 : 1;
-    });
-  } else if (sort == "pricei") {
-    data.sort(function (x, y) {
-      return x.price - y.price;
-    });
-  } else if (sort == "priced") {
-    data.sort(function (x, y) {
-      return y.price - x.price;
-    });
-  }
-
   const handlechange = useCallback(
     function (event) {
-      setQuery(event.target.value);
+      setSearchParams({ ...params, query: event.target.value, page: 1 });
     },
     [query]
   );
 
   const sortchange = useCallback(
     function (event) {
-      console.log("sortchange is running usecallback");
-      setsort(event.target.value);
+      setSearchParams({ ...params, sort: event.target.value });
     },
     [sort]
   );
-
   if (loading) {
     return <Loading />;
   }
@@ -97,8 +99,22 @@ function ProductListPage({ user, setuser }) {
         </div>
       </div>
 
-      {data.length > 0 && <ProductList products={data} />}
-      {data.length == 0 && <Noproduct />}
+      {productlist.data.length > 0 && (
+        <ProductList products={productlist.data} />
+      )}
+      {productlist.data == 0 && <Noproduct />}
+      {range(1, productlist.meta.last_page + 1).map((item) => (
+        <Link
+          to={"?" + new URLSearchParams({ ...params, page: item })}
+          className={
+            "p-2 m-1 mt-10 text-white " +
+            (item === page ? "bg-primary-dark" : "bg-gray-700")
+          }
+          key={item}
+        >
+          {item}
+        </Link>
+      ))}
     </div>
   );
 }

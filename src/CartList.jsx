@@ -2,28 +2,37 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import CartRow from "./CartRow";
+import { WithCart } from "./WithProvider";
 
-let CartList = ({ data, cart, updateCart }) => {
-  const [localCart, SetLocalCart] = useState(cart);
+let CartList = ({ cart, updateCart }) => {
+  const [quantityMap, SetquantityMap] = useState();
+
+  const cartToQuantityMap = () =>
+    cart.reduce(
+      (previous, current) => ({
+        ...previous,
+        [current.product.id]: current.quantity,
+      }),
+      {}
+    );
 
   useEffect(() => {
-    SetLocalCart(cart);
+    SetquantityMap(cartToQuantityMap);
   }, [cart]);
 
-  const handleRemove = (Productid) => {
-    const newcart = { ...cart };
-
-    delete newcart[Productid];
-
-    updateCart(newcart);
+  const handleUpdateClick = () => {
+    updateCart(quantityMap);
   };
 
   const handleQuantityChange = (Productid, newValue) => {
-    const newLocalcart = { ...localCart, [Productid]: newValue };
-    SetLocalCart(newLocalcart);
+    const newQuantity = { ...quantityMap, [Productid]: newValue };
+    SetquantityMap(newQuantity);
   };
-  const handleUpdateClick = () => {
-    updateCart(localCart);
+
+  const handleRemove = (Productid) => {
+    const newQuantity = cartToQuantityMap();
+    delete newQuantity[Productid];
+    updateCart(newQuantity);
   };
 
   return (
@@ -37,11 +46,11 @@ let CartList = ({ data, cart, updateCart }) => {
       </div>
 
       <div>
-        {data.map((product) => (
+        {cart.map((CartItem) => (
           <CartRow
-            key={product.id}
-            product={product}
-            quantity={localCart[product.id]}
+            key={CartItem.product.id}
+            product={CartItem.product}
+            quantity={quantityMap[CartItem.product.id] || CartItem.quantity}
             OnQuantityChange={handleQuantityChange}
             handleRemove={handleRemove}
           />
@@ -58,4 +67,4 @@ let CartList = ({ data, cart, updateCart }) => {
     </div>
   );
 };
-export default CartList;
+export default WithCart(CartList);

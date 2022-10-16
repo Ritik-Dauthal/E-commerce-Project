@@ -17,9 +17,10 @@ function callLoginApi(values, bag) {
       const { user, token } = response.data;
       localStorage.setItem("token", token);
       bag.props.setuser(user);
+      bag.props.SetAlert({ type: "success", message: "Welcome user 🤗" });
     })
     .catch(() => {
-      bag.props.SetAlert({ type: "failed", message: "Invalid Data" });
+      bag.props.SetAlert({ type: "failed", message: "Invalid Data 😕" });
     });
 }
 

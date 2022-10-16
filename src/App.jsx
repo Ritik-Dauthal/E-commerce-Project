@@ -10,118 +10,63 @@ import CartPage from "./CartPage";
 import Login from "./login";
 import Signup from "./signup";
 import Forget from "./Forget";
-import { useEffect } from "react";
-import axios from "axios";
-import Loading from "./Loading";
 import UserRoute from "./UserRoute";
 import Authroute from "./Authroute";
 import Alert from "./Alert";
-import { AlertContext, userContext } from "./Context";
+import UserProvider from "./Provider/UserProvider";
+import AlertProvider from "./Provider/AlertProvider";
+import CartProvider from "./Provider/CartProvider";
 
 function App() {
   const [menuopen, Setmenu] = useState(false);
-  const savedDataString = localStorage.getItem("my-Cart") || "{}";
-  const savedData = JSON.parse(savedDataString);
-
-  const [cart, setCart] = useState(savedData);
-  const [user, setuser] = useState();
-  const [loadinguser, SetloadingUser] = useState(true);
-  const [alert, SetAlert] = useState();
-
-  const removeAlert = () => {
-    SetAlert(undefined);
-  };
-
-  const token = localStorage.getItem("token");
-
-  useEffect(() => {
-    if (token) {
-      axios
-        .get("https://myeasykart.codeyogi.io/me", {
-          headers: {
-            Authorization: token,
-          },
-        })
-        .then((response) => {
-          setuser(response.data);
-          SetloadingUser(false);
-        });
-    } else {
-      SetloadingUser(false);
-    }
-  }, []);
-
-  function handleAddToCart(productId, count) {
-    const oldCount = cart[productId] || 0;
-    const newCart = { ...cart, [productId]: oldCount + count };
-
-    updateCart(newCart);
-  }
-  function updateCart(newCart) {
-    setCart(newCart);
-    const cartString = JSON.stringify(newCart);
-    localStorage.setItem("my-Cart", cartString);
-  }
-
-  const totalCount = Object.keys(cart).reduce(function (previous, current) {
-    return previous + cart[current];
-  }, 0);
 
   const HamburgerOpen = () => {
     Setmenu(!menuopen);
   };
-  if (loadinguser) {
-    return <Loading />;
-  }
 
   return (
     <div className="flex flex-col h-screen overflow-y-scroll bg-gray-200">
-      <userContext.Provider value={{ user, setuser }}>
-        <AlertContext.Provider value={{ alert, SetAlert, removeAlert }}>
-          <Alert />
-          <div>
-            <Navbar
-              menuopen={menuopen}
-              HamburgerOpen={HamburgerOpen}
-              productCount={totalCount}
-            />
-          </div>
+      <UserProvider>
+        <AlertProvider>
+          <CartProvider>
+            <Alert />
+            <div>
+              <Navbar menuopen={menuopen} HamburgerOpen={HamburgerOpen} />
+            </div>
 
-          <div className="grow">
-            <Routes>
-              <Route
-                index
-                element={
-                  <UserRoute>
-                    <ProductListPage />
-                  </UserRoute>
-                }
-              ></Route>
-              <Route
-                path="/products/:xyz"
-                element={<ProductDetail onAddToCart={handleAddToCart} />}
-              ></Route>
-              <Route path="*" element={<NoProductFound />}></Route>
-              <Route
-                path="/login"
-                element={
-                  <Authroute>
-                    <Login />
-                  </Authroute>
-                }
-              ></Route>
-              <Route path="/signup" element={<Signup />}></Route>
-              <Route path="/forget" element={<Forget />}></Route>
-              <Route
-                path="/cart"
-                element={<CartPage cart={cart} updateCart={updateCart} />}
-              ></Route>
-            </Routes>
-          </div>
+            <div className="grow">
+              <Routes>
+                <Route
+                  index
+                  element={
+                    <UserRoute>
+                      <ProductListPage />
+                    </UserRoute>
+                  }
+                ></Route>
+                <Route
+                  path="/products/:xyz"
+                  element={<ProductDetail />}
+                ></Route>
+                <Route path="*" element={<NoProductFound />}></Route>
+                <Route
+                  path="/login"
+                  element={
+                    <Authroute>
+                      <Login />
+                    </Authroute>
+                  }
+                ></Route>
+                <Route path="/signup" element={<Signup />}></Route>
+                <Route path="/forget" element={<Forget />}></Route>
+                <Route path="/cart" element={<CartPage />}></Route>
+              </Routes>
+            </div>
 
-          <Footer />
-        </AlertContext.Provider>
-      </userContext.Provider>
+            <Footer />
+          </CartProvider>
+        </AlertProvider>
+      </UserProvider>
     </div>
   );
 }
