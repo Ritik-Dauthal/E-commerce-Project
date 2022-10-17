@@ -93,7 +93,7 @@ export function Forget({
           </button>
         </div>
         <div>
-          <Link className="text-red-500" to="/login">
+          <Link to="/login" className="text-red-500">
             Back to Login{" "}
           </Link>
         </div>
