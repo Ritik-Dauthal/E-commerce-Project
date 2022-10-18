@@ -45,12 +45,12 @@ export function Login({
     <div className="flex items-center justify-center w-full h-screen bg-gray-300">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col p-5 bg-gray-100 rounded-sm w-80"
+        className="flex flex-col w-screen h-full p-5 bg-gray-900 rounded-sm lg:h-fit lg:w-fit "
       >
         <h1 className="mb-4 space-y-4 text-2xl font-bold text-red-600">
           Login
         </h1>
-        <div className="p-4 border-4 border-cyan-800">
+        <div className="p-4 space-y-10 border-4 lg:space-y-2 border-cyan-800 h-fit">
           <Input
             values={values.email}
             errors={errors.email}
@@ -85,13 +85,19 @@ export function Login({
           >
             Login
           </button>
-          <Link to="/forget" className="text-red-500">
+          <Link
+            to="/forget"
+            className="text-xl text-red-500 underline md:text-lg"
+          >
             forget password?
           </Link>
         </div>
-        <div className="flex">
+        <div className="flex text-xl text-red-500">
           <h4>Already have an account ?</h4>
-          <Link to="/signup" className="text-red-500">
+          <Link
+            to="/signup"
+            className="text-xl text-red-500 underline md:text-lg"
+          >
             SignUp
           </Link>
         </div>

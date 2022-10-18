@@ -57,7 +57,14 @@ function App() {
                     </Authroute>
                   }
                 ></Route>
-                <Route path="/signup" element={<Signup />}></Route>
+                <Route
+                  path="/signup"
+                  element={
+                    <Authroute>
+                      <Signup />
+                    </Authroute>
+                  }
+                ></Route>
                 <Route path="/forget" element={<Forget />}></Route>
                 <Route path="/cart" element={<CartPage />}></Route>
               </Routes>
