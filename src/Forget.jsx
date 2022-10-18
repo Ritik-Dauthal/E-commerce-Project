@@ -37,12 +37,12 @@ export function Forget({
     <div className="flex items-center justify-center w-full h-screen bg-gray-300">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col p-5 bg-gray-100 rounded-sm w-80"
+        className="flex flex-col w-screen h-full p-5 bg-gray-900 rounded-sm lg:h-fit lg:w-fit "
       >
-        <h1 className="mb-4 space-y-4 text-2xl text-black">
+        <h1 className="mb-4 space-y-4 text-2xl text-red-500">
           Forget Password ?
         </h1>
-        <div className="p-4 border-4">
+        <div className="w-full p-5 space-y-10 border-4 lg:space-y-2 border-cyan-900 lg:w-fit h-fit">
           <Input
             values={values.email}
             errors={errors.email}
@@ -85,15 +85,15 @@ export function Forget({
             placeholder="Enter Password Again"
           />
 
-          <button
-            type="submit"
-            className="px-4 py-2 mt-4 text-white bg-primary-dark disabled:bg-primary-light"
-          >
+          <button type="submit" className="flex text-xl text-red-500">
             Submit
           </button>
         </div>
         <div>
-          <Link to="/login" className="text-red-500">
+          <Link
+            to="/login"
+            className="text-xl text-red-500 underline md:text-lg"
+          >
             Back to Login{" "}
           </Link>
         </div>
