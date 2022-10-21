@@ -59,7 +59,7 @@ export function Signup({
                 >
                   <div>
                     <label
-                      for="email"
+                      htmlFor="email"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
                       Your email
@@ -80,7 +80,7 @@ export function Signup({
                   </div>
                   <div>
                     <label
-                      for="password"
+                      htmlFor="password"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
                       Password
@@ -102,7 +102,7 @@ export function Signup({
                   </div>
                   <div>
                     <label
-                      for="fullName"
+                      htmlFor="fullName"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
                       Password

@@ -46,6 +46,7 @@ function ProductListPage({ user, setuser }) {
     localStorage.removeItem("token");
     setuser(undefined);
   };
+  console.log(productlist);
 
   const handlechange = useCallback(
     function (event) {
