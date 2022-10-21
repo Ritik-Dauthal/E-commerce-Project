@@ -16,7 +16,7 @@ function Navbar({ totalCount, HamburgerOpen, menuopen, user }) {
         <div className="flex space-x-2">
           <div>
             <VscAccount
-              className="text-4xl md:text-3xl "
+              className="text-6xl md:text-3xl "
               onClick={HamburgerOpen}
             />
             {menuopen && <Hamburger />}
@@ -25,7 +25,7 @@ function Navbar({ totalCount, HamburgerOpen, menuopen, user }) {
             {user && (
               <div>
                 <Link to="/cart">
-                  <BsCartCheck className="text-4xl md:text-3xl" />
+                  <BsCartCheck className="text-6xl md:text-3xl" />
                 </Link>
                 <div className="text-center text-white border rounded-full -mt-11 border-md bg-primary-dark">
                   {totalCount}

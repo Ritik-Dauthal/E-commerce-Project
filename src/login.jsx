@@ -42,66 +42,89 @@ export function Login({
   values,
 }) {
   return (
-    <div className="flex items-center justify-center w-full h-screen bg-gray-300">
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col w-screen h-full p-5 bg-gray-900 rounded-sm lg:h-fit lg:w-fit "
-      >
-        <h1 className="mb-4 space-y-4 text-2xl font-bold text-red-600">
-          Login
-        </h1>
-        <div className="p-4 space-y-10 border-4 lg:space-y-2 border-cyan-800 h-fit">
-          <Input
-            values={values.email}
-            errors={errors.email}
-            touched={touched.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            id="email"
-            name="email"
-            type="email"
-            required
-            autoComplete="email"
-            placeholder="Email-address"
-          />
-
-          <FancyInput
-            values={values.password}
-            errors={errors.password}
-            touched={touched.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            id="password"
-            name="password"
-            type="password"
-            autoComplete="password"
-            required
-            placeholder="Password"
-          />
-
-          <button
-            type="submit"
-            className="px-4 py-2 mt-4 text-white bg-primary-dark "
-          >
-            Login
-          </button>
-          <Link
-            to="/forget"
-            className="text-xl text-red-500 underline md:text-lg"
-          >
-            forget password?
-          </Link>
+    <div>
+      <section className="bg-gray-500 dark:bg-gray-900">
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+          <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                Login
+              </h1>
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-4 md:space-y-6"
+                action="#"
+              >
+                <div>
+                  <label
+                    for="email"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Your email
+                  </label>
+                  <Input
+                    values={values.email}
+                    errors={errors.email}
+                    touched={touched.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    autoComplete="email"
+                    placeholder="Email-address"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="password"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Password
+                  </label>
+                  <FancyInput
+                    values={values.password}
+                    errors={errors.password}
+                    touched={touched.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    id="password"
+                    name="password"
+                    type="password"
+                    autoComplete="password"
+                    required
+                    placeholder="Password"
+                  />
+                </div>
+                <div className="flex items-center justify-between">
+                  <Link
+                    to="/forget"
+                    className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                  >
+                    Forgot password?
+                  </Link>
+                </div>
+                <button
+                  type="submit"
+                  className="w-full text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                  Login
+                </button>
+                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                  Don’t have an account yet?{" "}
+                  <Link
+                    to="/signup"
+                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                  >
+                    Sign up
+                  </Link>
+                </p>
+              </form>
+            </div>
+          </div>
         </div>
-        <div className="flex text-xl text-red-500">
-          <h4>Already have an account ?</h4>
-          <Link
-            to="/signup"
-            className="text-xl text-red-500 underline md:text-lg"
-          >
-            SignUp
-          </Link>
-        </div>
-      </form>
+      </section>
     </div>
   );
 }
