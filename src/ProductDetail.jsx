@@ -54,7 +54,7 @@ function ProductDetail({ handleAddToCart }) {
             <Link to={"/products/" + (id - 1)}>
               <BsArrowLeftCircleFill
                 onClick={handleitemchange}
-                className="text-8xl md:text-4xl"
+                className="text-xl md:text-4xl"
               />
             </Link>
           )}
@@ -63,7 +63,7 @@ function ProductDetail({ handleAddToCart }) {
           <Link to={"/products/" + (id + 1)}>
             <BsArrowRightCircleFill
               onClick={handleitemchange}
-              className="text-8xl md:text-4xl"
+              className="text-xl md:text-4xl"
             />
           </Link>
         </div>
@@ -73,43 +73,43 @@ function ProductDetail({ handleAddToCart }) {
           <img className="object-cover w-full h-full" src={Product.thumbnail} />
         </div>
         <div className="h-1/2">
-          <div className="text-4xl text-gray-500 md:text-2xl">
+          <div className="text-lg text-gray-500 md:text-2xl">
             Category - {Product.category}
           </div>
-          <div className="mt-2 text-4xl font-bold text-green-700 md:text-2xl">
+          <div className="mt-2 text-lg font-bold text-green-700 md:text-2xl">
             Title - {Product.title}
           </div>
-          <div className="mt-2 text-4xl font-bold md:text-2xl text-cyan-600">
+          <div className="mt-2 text-lg font-bold md:text-2xl text-cyan-600">
             Stock - {Product.stock}
           </div>
-          <div className="mt-2 text-4xl font-bold text-blue-600 md:text-2xl">
+          <div className="mt-2 text-lg font-bold text-blue-600 md:text-2xl">
             Description - {Product.description}
           </div>
-          <div className="mt-2 text-4xl font-bold text-red-700 md:text-2xl">
+          <div className="mt-2 text-lg font-bold text-red-700 md:text-2xl">
             Discount - {Product.discountPercentage}
           </div>
-          <div className="mt-2 text-4xl font-bold text-gray-800 md:text-2xl">
+          <div className="mt-2 text-lg font-bold text-gray-800 md:text-2xl">
             ${Product.price}
           </div>
-          <div className="mt-2 text-4xl text-green-900 md:text-2xl">
+          <div className="mt-2 text-lg text-green-900 md:text-2xl">
             Rating - {Product.rating}
           </div>
           <div className="flex flex-col mt-4 lg:flex-row">
             <div>
               <Link to="/">
-                <AiFillHome className="text-8xl md:text-4xl" />
+                <AiFillHome className="text-2xl md:text-4xl" />
               </Link>
             </div>
             <div className="mt-2 lg:mt-0">
               <button
                 onClick={handleButtonClick}
-                className="px-2 text-4xl text-white rounded-md md:text-2xl bg-primary-dark"
+                className="px-2 text-xl text-white rounded-md md:text-2xl bg-primary-dark"
               >
                 Add to cart
               </button>
               <input
                 onChange={handleCountChange}
-                className="text-4xl font-bold text-black border-gray-400 border-3 md:text-2xl w-14 "
+                className="text-xl font-bold text-black border-gray-400 border-3 md:text-2xl w-14 "
                 type="number"
                 value={count}
               />
