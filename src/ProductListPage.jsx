@@ -46,7 +46,6 @@ function ProductListPage({ user, setuser }) {
     localStorage.removeItem("token");
     setuser(undefined);
   };
-  console.log(productlist);
 
   const handlechange = useCallback(
     function (event) {
@@ -73,6 +72,7 @@ function ProductListPage({ user, setuser }) {
       <div className="flex">
         <div className="flex flex-col mb-2 lg:flex-row">
           <FancyInput
+            type="text"
             placeholder="search"
             onChange={handlechange}
             value={query}

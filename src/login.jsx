@@ -2,8 +2,8 @@ import { withFormik } from "formik";
 import React from "react";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
-import FancyInput from "./FancyInput";
-import Input from "./Input";
+import { FormikFancyInput } from "./FancyInput";
+import { FormikInput } from "./Input";
 import axios from "axios";
 import { WithUser, AlertUser } from "./WithProvider";
 
@@ -33,14 +33,7 @@ const initialValues = {
   email: "",
   password: "",
 };
-export function Login({
-  handleSubmit,
-  handleBlur,
-  handleChange,
-  touched,
-  errors,
-  values,
-}) {
+export function Login({ handleSubmit }) {
   return (
     <div>
       <section className="bg-gray-500 dark:bg-gray-900">
@@ -62,12 +55,7 @@ export function Login({
                   >
                     Your email
                   </label>
-                  <Input
-                    values={values.email}
-                    errors={errors.email}
-                    touched={touched.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
+                  <FormikInput
                     id="email"
                     name="email"
                     type="email"
@@ -83,12 +71,7 @@ export function Login({
                   >
                     Password
                   </label>
-                  <FancyInput
-                    values={values.password}
-                    errors={errors.password}
-                    touched={touched.password}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
+                  <FormikFancyInput
                     id="password"
                     name="password"
                     type="password"

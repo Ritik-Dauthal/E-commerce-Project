@@ -2,7 +2,7 @@ import React from "react";
 import { useField } from "formik";
 
 function FormikHoc(IncomingComponent) {
-  function outgoingComponent({ id, name, ...rest }) {
+  function outgoingComponent({ name, ...rest }) {
     const field = useField(name);
     const [data, meta] = field;
 
@@ -13,7 +13,7 @@ function FormikHoc(IncomingComponent) {
       <IncomingComponent
         onChange={onChange}
         onBlur={onBlur}
-        value={value}
+        value={value || ""}
         error={error}
         touched={touched}
         name={name}

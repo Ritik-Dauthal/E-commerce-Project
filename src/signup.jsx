@@ -2,8 +2,8 @@ import { withFormik } from "formik";
 import React from "react";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
-import Input from "./Input";
-import FancyInput from "./FancyInput";
+import { FormikInput } from "./Input";
+import { FormikFancyInput } from "./FancyInput";
 import axios from "axios";
 import { WithUser } from "./WithProvider";
 
@@ -35,14 +35,7 @@ const initialvalues = {
   password: "",
   fullName: "",
 };
-export function Signup({
-  handleSubmit,
-  handleBlur,
-  handleChange,
-  errors,
-  touched,
-  values,
-}) {
+export function Signup({ handleSubmit }) {
   return (
     <>
       <div>
@@ -64,15 +57,10 @@ export function Signup({
                     >
                       Your email
                     </label>
-                    <Input
-                      values={values.email}
-                      errors={errors.email}
-                      touched={touched.email}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
+                    <FormikInput
                       name="email"
                       type="email"
-                      id="email-address"
+                      id="email"
                       required
                       autoComplete="email"
                       placeholder="Enter email"
@@ -86,12 +74,7 @@ export function Signup({
                       Password
                     </label>
 
-                    <Input
-                      values={values.password}
-                      errors={errors.password}
-                      touched={touched.password}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
+                    <FormikInput
                       name="password"
                       type="password"
                       id="password"
@@ -108,12 +91,7 @@ export function Signup({
                       Password
                     </label>
 
-                    <FancyInput
-                      values={values.fullName}
-                      errors={errors.fullName}
-                      touched={touched.fullName}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
+                    <FormikFancyInput
                       name="fullName"
                       type="text"
                       id="fullName"

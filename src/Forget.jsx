@@ -2,8 +2,8 @@ import { withFormik } from "formik";
 import React from "react";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
-import Input from "./Input";
-import FancyInput from "./FancyInput";
+import { FormikInput } from "./Input";
+import { FormikFancyInput } from "./FancyInput";
 
 function callForgetApi(values) {
   console.log(
@@ -25,14 +25,7 @@ const InitialValues = {
   Newpassword: "",
   Confirm_password: "",
 };
-export function Forget({
-  handleSubmit,
-  handleChange,
-  handleBlur,
-  values,
-  touched,
-  errors,
-}) {
+export function Forget({ handleSubmit }) {
   return (
     <div>
       <section className="bg-gray-500 dark:bg-gray-900">
@@ -50,12 +43,7 @@ export function Forget({
                   >
                     Your email
                   </label>
-                  <Input
-                    values={values.email}
-                    errors={errors.email}
-                    touched={touched.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
+                  <FormikInput
                     id="email"
                     name="email"
                     type="email"
@@ -72,12 +60,7 @@ export function Forget({
                     New Password
                   </label>
 
-                  <Input
-                    values={values.Newpassword}
-                    errors={errors.Newpassword}
-                    touched={touched.Newpassword}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
+                  <FormikInput
                     name="Newpassword"
                     type="password"
                     id="Newpassword"
@@ -94,12 +77,7 @@ export function Forget({
                     Confirm Password
                   </label>
 
-                  <FancyInput
-                    values={values.Confirm_password}
-                    errors={errors.Confirm_password}
-                    touched={touched.Confirm_password}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
+                  <FormikFancyInput
                     name="Confirm_password"
                     type="password"
                     id="Confirm_password"
