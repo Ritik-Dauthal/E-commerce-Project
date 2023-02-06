@@ -88,7 +88,7 @@ export function Signup({ handleSubmit }) {
                       htmlFor="fullName"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
-                      Password
+                      Full Name
                     </label>
 
                     <FormikFancyInput
