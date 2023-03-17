@@ -5,7 +5,7 @@ import CartRow from "./CartRow";
 import { WithCart } from "./WithProvider";
 
 let CartList = ({ cart, updateCart }) => {
-  const [quantityMap, SetquantityMap] = useState();
+  const [quantityMap, SetquantityMap] = useState(0);
 
   const cartToQuantityMap = () =>
     cart.reduce(
